@@ -1,6 +1,6 @@
 class Board
   def initialize
-    @board = [{a1: "__", a2: "__", a3: "__"}, {b1: "__", b2: "__", b3: "__"}, {b1: "__", b2: "__", b3: "__"}]
+    @board = [{a1: "__", a2: "__", a3: "__"}, {b1: "__", b2: "__", b3: "__"}, {c1: "__", c2: "__", c3: "__"}]
   end
 
   def display
@@ -36,6 +36,5 @@ symbol = gets.chomp
 player1 = Player.new(name, symbol)
 =begin
 need to change this so I can do some checks on valid name and symbol
-+ same for second player...
-then start a board
++ same for second player
 =end
