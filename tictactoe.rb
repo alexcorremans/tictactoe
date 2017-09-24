@@ -52,7 +52,6 @@ class Board
     @cells = []
     @player1 = player1
     @player2 = player2
-    # @winner = false
   end
 
   def start_game
