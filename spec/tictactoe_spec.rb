@@ -3,28 +3,33 @@ require './player'
 
 describe Player do
 
+  before do
+    allow($stdout).to receive(:write)
+  end
+
   describe "#initialize" do
     it "creates a first player and assigns a name and a symbol based on user input" do
-      # player1 defined globally so it can be referred to in the second test
-      $player1 = Player.new
-      expect($player1.name).not_to be_nil
-      expect($player1.symbol).to eql("O").or(eql("X"))
+      allow_any_instance_of(Player).to receive(:gets).and_return("first player\n", "O\n")
+      player1 = Player.new
+      expect(player1.name).to eql("First player")
+      expect(player1.symbol).to eql("O")
     end
 
     it "creates a second player and assigns a name based on user input and the remaining symbol based on the first player's choice" do
+      allow_any_instance_of(Player).to receive(:gets).and_return("second player\n")
       player2 = Player.new
-      expect(player2.name).not_to be_nil
-      if $player1.symbol == "X"
-        expect(player2.symbol).to eql("O")
-      else
-        expect(player2.symbol).to eql("X")
-      end
+      expect(player2.name).to eql("Second player")
+      expect(player2.symbol).to eql("X")
     end
   end
 
 end
 
 describe Board do
+
+  before do
+    allow($stdout).to receive(:write)
+  end
 
   let(:player1) { double("Test player 1", name: "Tester 1", symbol: "X") }
   let(:player2) { double("Test player 2", name: "Tester 2", symbol: "O") }
